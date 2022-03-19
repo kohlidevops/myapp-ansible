@@ -3,14 +3,11 @@
   become: True
   tasks:
     - name: Install packages
-      yum:
-        name: "httpd"
-        state: "present"
+      apt: name=apache2 update_cache=yes state=latest
     - name: Start Apache server
       service:
-        name: httpd
-        state: started
-        enabled: True
+        name: apache2
+        state: restarted
     - name: Deploy static website
       copy:
         src: index.html
