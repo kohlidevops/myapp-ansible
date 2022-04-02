@@ -1,15 +1,13 @@
----
-- hosts: webservers 
+- hosts: webservers
   become: True
   tasks:
     - name: Install packages
       apt: name=apache2 update_cache=yes state=latest
-    - name: Start Apache server
+    - name: Start Apache Server
       service:
         name: apache2
         state: restarted
-    - name: Deploy static website
+    - name: Deploy Static Website
       copy:
         src: index.html
         dest: /var/www/html/
----
